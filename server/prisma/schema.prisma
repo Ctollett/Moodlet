@@ -1,0 +1,88 @@
+// Prisma schema for Moodlet database
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ownedBoards Board[]               @relation("BoardOwner")
+  collaborations BoardCollaborator[]
+  comments    Comment[]
+}
+
+model Board {
+  id        String   @id @default(uuid())
+  name      String
+  ownerId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner         User                  @relation("BoardOwner", fields: [ownerId], references: [id])
+  collaborators BoardCollaborator[]
+  elements      Element[]
+  comments      Comment[]
+
+  @@index([ownerId])
+}
+
+model BoardCollaborator {
+  id        String   @id @default(uuid())
+  boardId   String
+  userId    String
+  role      String   @default("viewer") // owner, editor, viewer
+  createdAt DateTime @default(now())
+
+  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([boardId, userId])
+  @@index([boardId])
+  @@index([userId])
+}
+
+model Element {
+  id        String   @id @default(uuid())
+  boardId   String
+  type      String   // note, text, image, shape
+  x         Float
+  y         Float
+  width     Float
+  height    Float
+  data      Json     // Flexible data storage for element-specific properties
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  @@index([boardId])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  boardId   String
+  userId    String
+  content   String
+  x         Float?   // Optional position on canvas
+  y         Float?
+  resolved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([boardId])
+  @@index([userId])
+}

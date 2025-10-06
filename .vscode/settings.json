@@ -1,0 +1,15 @@
+{
+  // formatting & linting are still the source of truth
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Copilot does inline typing
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": { "*": true, "markdown": false, "plaintext": false },
+
+  // Claude focuses on multi-file reasoning, refactors & diffs (no inline)
+  "anthropic.claude.enableInlineCompletions": false,
+
+  // keep secrets out of AI context when possible
+  "files.watcherExclude": { "**/.env": true, "**/.env.*": true }
+}
