@@ -123,17 +123,17 @@ Core server framework with type safety for building RESTful APIs and WebSocket s
 - Built-in support for broadcasting and event handling
 - Scales well with Redis adapter for multi-server deployments
 
-### **REST + GraphQL**
+### **REST API**
 
 **Purpose**: API architecture
 **Reasoning**:
 
-- **REST** for simple CRUD operations: user registration, authentication, basic board operations
-- **GraphQL** for complex queries: fetching boards with nested elements, collaborators, comments, and permissions in a single request
-- GraphQL's flexible nature handles the complex relational data of whiteboard elements efficiently
-- Reduces over-fetching and under-fetching of data
-- Type-safe API contract via GraphQL schema
-- Enables clients to request exactly the data they need, optimizing performance
+- RESTful endpoints for all CRUD operations and data retrieval
+- Simple, straightforward architecture for predictable data requirements
+- Standard HTTP methods (GET, POST, PUT/PATCH, DELETE)
+- Well-understood patterns and easier to debug
+- Type-safe API contract via Zod schemas shared between client and server
+- Sufficient for application's fixed data requirements per page
 
 ---
 
@@ -242,7 +242,7 @@ Version control
 │     (Vite, Zustand, Tailwind, Konva)    │
 └────────────┬────────────────────────────┘
              │
-             │ REST/GraphQL + WebSocket
+             │ REST + WebSocket
              │
 ┌────────────▼────────────────────────────┐
 │       Express.js + TypeScript           │
