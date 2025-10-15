@@ -24,8 +24,8 @@ DELETE /api/boards/:boardId           # Delete board
 
 ```
 POST   /api/boards/:boardId/elements              # Create element
-PATCH  /api/boards/:boardId/elements/:elementId   # Update element
-DELETE /api/boards/:boardId/elements/:elementId   # Delete element
+PATCH  /api/elements/:elementId   # Update element
+DELETE /api/elements/:elementId   # Delete element
 ```
 
 ### Collaborators
@@ -33,8 +33,17 @@ DELETE /api/boards/:boardId/elements/:elementId   # Delete element
 ```
 GET    /api/boards/:boardId/collaborators             # Get all collaborators
 POST   /api/boards/:boardId/collaborators             # Add collaborator
-PATCH  /api/boards/:boardId/collaborators/:userId     # Update permissions
-DELETE /api/boards/:boardId/collaborators/:userId     # Remove collaborator
+PATCH  /api/collaborators/:userId     # Update permissions
+DELETE /api/collaborators/:userId     # Remove collaborator
+```
+
+### Comments
+
+```
+GET    /api/boards/:boardId/comments                  # Get all comments
+POST   /api/boards/:boardId/collaborators             # Add comment
+PATCH  /api/comments/:commentId                       # Update comment
+DELETE /api/comments/:commentId                       # Remove comment
 ```
 
 ---

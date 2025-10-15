@@ -26,3 +26,12 @@ export type Element = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type Collaborator = {
+  id: string;
+  userId: string;
+  boardId: string;
+  role: "owner" | "view" | "edit";
+  createdAt: Date;
+  updatedAt: Date;
+};
