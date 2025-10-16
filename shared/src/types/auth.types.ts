@@ -25,6 +25,7 @@ export type RegisterRequest = {
   email: string;
   password: string;
   name: string;
+  profileAvatar?: string;
 };
 
 export type RegisterResponse = {
