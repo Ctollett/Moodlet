@@ -1,4 +1,5 @@
 import { registerSchema, loginSchema } from "@shared/schemas/authSchema";
+import { createBoardSchema, updateBoardSchema } from "@shared/schemas/boardSchema";
 import { Request, Response, NextFunction } from "express";
 import { ZodError } from "zod";
 
@@ -32,6 +33,48 @@ export const validateRegister = (req: Request, res: Response, next: NextFunction
 export const validateLogin = (req: Request, res: Response, next: NextFunction) => {
   try {
     loginSchema.parse(req.body);
+    return next();
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return res.status(400).json({
+        message: "Validation failed",
+        errors: error.errors.map((err) => ({
+          path: err.path.join("."),
+          message: err.message,
+        })),
+      });
+    }
+    return res.status(500).json({
+      message: "Validation error",
+      error: "An unexpected error occurred",
+    });
+  }
+};
+
+export const validateCreateBoard = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    createBoardSchema.parse(req.body);
+    return next();
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return res.status(400).json({
+        message: "Validation failed",
+        errors: error.errors.map((err) => ({
+          path: err.path.join("."),
+          message: err.message,
+        })),
+      });
+    }
+    return res.status(500).json({
+      message: "Validation error",
+      error: "An unexpected error occurred",
+    });
+  }
+};
+
+export const validateUpdateBoard = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    updateBoardSchema.parse(req.body);
     return next();
   } catch (error) {
     if (error instanceof ZodError) {

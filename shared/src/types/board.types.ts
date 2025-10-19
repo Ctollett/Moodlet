@@ -5,7 +5,7 @@ import type { Element } from "./element.types";
 export type Board = {
   id: string;
   name: string;
-  description: string;
+  description: string | null;
   ownerId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -33,6 +33,10 @@ export type UpdateBoardResponse = {
 // TODO: Define GetBoardsResponse type (boards array)
 export type GetBoardsResponse = {
   boards: Board[];
+};
+
+export type DeleteBoardResponse = {
+  message: string;
 };
 
 export type GetBoardResponse = {
