@@ -1,6 +1,5 @@
-import { registerSchema, loginSchema } from "@shared/schemas/authSchema";
-import { createBoardSchema, updateBoardSchema } from "@shared/schemas/boardSchema";
 import { Request, Response, NextFunction } from "express";
+import { registerSchema, loginSchema, createBoardSchema, updateBoardSchema } from "shared";
 import { ZodError } from "zod";
 
 /**

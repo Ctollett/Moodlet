@@ -6,11 +6,12 @@
   // Copilot does inline typing
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
-    "*": true,
+    "*": false,
     "plaintext": false,
     "markdown": false,
     "scminput": false,
-    "typescript": false
+    "typescript": false,
+    "typescriptreact": false
   },
 
   // Claude focuses on multi-file reasoning, refactors & diffs (no inline)

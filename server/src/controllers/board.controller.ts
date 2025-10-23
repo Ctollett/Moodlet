@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { prisma } from "../prisma/client";
+import { prisma } from "../prisma/client.js";
 
 /**
  * Create a new board

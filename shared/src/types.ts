@@ -10,6 +10,7 @@ export type Board = {
   id: string;
   name: string;
   ownerId: string;
+  description?: string;
   createdAt: Date;
   updatedAt: Date;
 };

@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import express, { Application, Request, Response } from "express";
 import morgan from "morgan";
 
-import routes from "./routes";
+import routes from "./routes/index.js";
 
 // TODO: Create Express app
 

@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-import { createBoard, deleteBoard, getBoards } from "@/controllers/board.controller";
-import { validateToken } from "@/middleware/auth.middleware";
-import { validateCreateBoard } from "@/middleware/validation.middleware";
+import { createBoard, deleteBoard, getBoards } from "../controllers/board.controller.js";
+import { validateToken } from "../middleware/auth.middleware.js";
+import { validateCreateBoard } from "../middleware/validation.middleware.js";
 
 const router = Router();
 
